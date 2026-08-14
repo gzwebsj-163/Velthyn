@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/logo.png" alt="Velthyn Logo" width="160"/>
+</p>
+
 # Velthyn
 
 **MoCode — AI Agent Server (Docker) + macOS Desktop Client**
