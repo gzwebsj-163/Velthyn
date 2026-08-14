@@ -72,7 +72,11 @@ flowchart TB
     class EL,PB cl;
 ```
 
-> 完整架构图参见 [docs/architecture.png](docs/architecture.png)。
+**完整架构图 · System Architecture**：
+
+<p align="center">
+  <img src="docs/architecture.png" alt="Velthyn 完整架构图" width="100%"/>
+</p>
 
 **架构设计原则**：
 - **多通道统一会话**：13 种 IM/Web 入口共享同一 Agent 大脑与记忆；
