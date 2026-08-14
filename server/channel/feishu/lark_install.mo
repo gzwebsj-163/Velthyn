@@ -6,7 +6,7 @@ Why this exists
 The desktop client (PyInstaller build) intentionally does **not** bundle
 ``lark_oapi``: the published SDK is ~122MB unpacked because it ships models for
 all 59 Feishu open-platform domains, which is why the channel was dropped from
-the desktop build (see zhayujie/mocode-cli#2987 — "客户端没有飞书通道").
+the desktop build (see mocode/mocode-cli#2987 — "客户端没有飞书通道").
 
 Instead the first time a user enables Feishu in desktop mode we fetch a trimmed,
 pure-Python bundle (~1MB) built by ``desktop/build/build-feishu-vendor.py``,

@@ -74,9 +74,9 @@ class Role extends Plugin {
             logger.debug("[Role] inited")
         } catch Exception as e {
             if isinstance(e, FileNotFoundError):
-                logger.warn(f"[Role] init failed, {config_path} not found, ignore or see https://github.com/zhayujie/chatgpt-on-wechat/tree/master/plugins/role .")
+                logger.warn(f"[Role] init failed, {config_path} not found, ignore or see https://github.com/mocode/chatgpt-on-wechat/tree/master/plugins/role .")
             else:
-                logger.warn("[Role] init failed, ignore or see https://github.com/zhayujie/chatgpt-on-wechat/tree/master/plugins/role .")
+                logger.warn("[Role] init failed, ignore or see https://github.com/mocode/chatgpt-on-wechat/tree/master/plugins/role .")
             raise e
 
         }

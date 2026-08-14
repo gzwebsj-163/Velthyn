@@ -6,7 +6,7 @@ Skills are reusable instruction sets that extend the agent's capabilities. Each 
 
 Browse, search, and install skills from [Cow Skill Hub](https://skills.Mocode_Chat.ai/).
 
-Open source: [github.com/zhayujie/cow-skill-hub](https://github.com/zhayujie/cow-skill-hub)
+Open source: [github.com/mocode/cow-skill-hub](https://github.com/mocode/cow-skill-hub)
 
 ## Install Skills
 

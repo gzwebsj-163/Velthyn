@@ -34,7 +34,7 @@ class Keyword extends Plugin {
             this.handlers[Event.ON_HANDLE_CONTEXT] = this.on_handle_context
             logger.debug("[keyword] inited.")
         } catch Exception as e {
-            logger.warn("[keyword] init failed, ignore or see https://github.com/zhayujie/chatgpt-on-wechat/tree/master/plugins/keyword .")
+            logger.warn("[keyword] init failed, ignore or see https://github.com/mocode/chatgpt-on-wechat/tree/master/plugins/keyword .")
             raise e
 
         }

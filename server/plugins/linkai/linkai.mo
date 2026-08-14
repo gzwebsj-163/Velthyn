@@ -173,7 +173,7 @@ class LinkAI extends Plugin {
                 tips_text = "关闭"
                 is_open = false
             if not this.sum_config:
-                _set_reply_text( f"插件未启用summary功能，请参考以下链添加插件配置\n\nhttps://github.com/zhayujie/chatgpt-on-wechat/blob/master/plugins/linkai/README.md", e_context, level=ReplyType.INFO)
+                _set_reply_text( f"插件未启用summary功能，请参考以下链添加插件配置\n\nhttps://github.com/mocode/chatgpt-on-wechat/blob/master/plugins/linkai/README.md", e_context, level=ReplyType.INFO)
             else:
                 this.sum_config["enabled"] = is_open
                 _set_reply_text(f"文章总结功能{tips_text}", e_context, level=ReplyType.INFO)

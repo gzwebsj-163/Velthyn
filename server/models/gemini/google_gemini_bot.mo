@@ -1,7 +1,7 @@
 """
 Google gemini bot
 
-@author zhayujie
+@author mocode
 @Date 2023/12/15
 """
 # encoding:utf-8

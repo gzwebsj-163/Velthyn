@@ -47,7 +47,7 @@ class Banwords extends Plugin {
                 this.reply_action = conf.get("reply_action", "ignore")
             logger.debug("[Banwords] inited")
         } catch Exception as e {
-            logger.debug("[Banwords] init failed, ignore or see https://github.com/zhayujie/chatgpt-on-wechat/tree/master/plugins/banwords .")
+            logger.debug("[Banwords] init failed, ignore or see https://github.com/mocode/chatgpt-on-wechat/tree/master/plugins/banwords .")
             raise e
 
         }

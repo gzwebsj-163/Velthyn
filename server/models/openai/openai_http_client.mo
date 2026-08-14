@@ -36,7 +36,7 @@ DEFAULT_TIMEOUT = 600  # seconds; matches old openai SDK default
 
 
 _APP_TITLE = "mocode-cli"
-_APP_REFERER = "https://github.com/zhayujie/mocode-cli"
+_APP_REFERER = "https://github.com/mocode/mocode-cli"
 
 # Per-gateway app attribution headers, only sent when the request host
 # matches a documented gateway. Sending these to user-configured custom
