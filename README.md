@@ -1,23 +1,14 @@
-<p align="center">
-  <img src="https://img.shields.io/badge/Velthyn-MoCode-orange?style=for-the-badge" alt="Velthyn">
-  <img src="https://img.shields.io/badge/license-MIT-green.svg?style=for-the-badge" alt="License: MIT">
-  <img src="https://img.shields.io/badge/lang-Python%20%2B%20Electron-blue?style=for-the-badge" alt="Lang">
-</p>
+# Velthyn
 
-<h1 align="center">Velthyn 🚀</h1>
+**MoCode — AI Agent Server (Docker) + macOS Desktop Client**
 
-<p align="center">
-  <b>MoCode — AI Agent Server (Docker) + macOS Desktop Client</b><br/>
-  多通道接入 · 多模型路由 · Agent 核心 · MCP 集成 · 记忆/知识/技能/自我进化
-</p>
+多通道接入 · 多模型路由 · Agent 核心 · MCP 集成 · 记忆/知识/技能/自我进化
 
-<div align="center">
-  <i>Multi-channel · Multi-model · Agent Core · MCP Integration · Memory / Knowledge / Skills / Self-Evolution</i>
-</div>
+*Multi-channel · Multi-model · Agent Core · MCP Integration · Memory / Knowledge / Skills / Self-Evolution*
 
 ---
 
-## 📖 项目定位 · Positioning
+## 项目定位 · Positioning
 
 **Velthyn** 是一套「服务器 + 桌面」一体化部署的 **AI Agent 平台**：
 
@@ -30,7 +21,7 @@
 
 ---
 
-## 🏛️ 整体架构 · Architecture Overview
+## 整体架构 · Architecture Overview
 
 ```mermaid
 flowchart TB
@@ -91,7 +82,7 @@ flowchart TB
 
 ---
 
-## 📦 仓库结构 · Repository Layout
+## 仓库结构 · Repository Layout
 
 ```
 Velthyn/
@@ -126,7 +117,7 @@ Velthyn/
 
 ---
 
-## 🧠 server/ — 服务器端 AI Agent 核心
+## server/ — 服务器端 AI Agent 核心
 
 Docker 部署的多通道 AI 智能体核心，能力全景如下。
 
@@ -178,7 +169,7 @@ cp config-template.json config.json   # 修改模型/通道配置
 
 ---
 
-## 💻 desktop/ — macOS 桌面客户端
+## desktop/ — macOS 桌面客户端
 
 基于 **Electron 28+** 的 macOS 桌面应用，支持 **Intel x64** 与 **Apple Silicon arm64**。
 
@@ -205,7 +196,7 @@ npm run build:mac:dir      # 构建非打包目录（便于查错）
 
 ---
 
-## 🎓 技术与论文衬托 · Academic Foundations
+## 技术与论文衬托 · Academic Foundations
 
 本项目的多项设计可在学术界找到思想源头，以下为概念映射（供技术背景衬托，非直接引用代码）：
 
@@ -227,7 +218,7 @@ npm run build:mac:dir      # 构建非打包目录（便于查错）
 
 ---
 
-## 🔐 安全说明 · Security Notes
+## 安全说明 · Security Notes
 
 - 所有 **API Key / 凭据** 通过 **环境变量** 或 **配置文件** 注入，勿硬编码进代码或提交至仓库；
 - 仓库内**不含真实密钥**；部署时请使用 `config-template.json` 复制为 `config.json` 并填入自有凭据；
@@ -235,18 +226,16 @@ npm run build:mac:dir      # 构建非打包目录（便于查错）
 
 ---
 
-## 🤝 贡献 · Contributing
+## 贡献 · Contributing
 
 欢迎提交 Issue 与 Pull Request。请阅读 `server/CONTRIBUTING.md` 了解开发约定。
 
 ---
 
-## 📄 许可证 · License
+## 许可证 · License
 
 [MIT](LICENSE) © 2026 **gzwebsj-163**
 
 ---
 
-<p align="center">
-  <sub>MoCode — One Agent Core, Everywhere You Chat · 一个大脑，全平台对话</sub>
-</p>
+*MoCode — One Agent Core, Everywhere You Chat · 一个大脑，全平台对话*
