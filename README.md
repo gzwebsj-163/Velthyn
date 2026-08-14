@@ -23,56 +23,56 @@
 
 ## 整体架构 · Architecture Overview
 
+整个系统自下而上分为 **接入 → Agent 核心 → 模型能力 → 桌面客户端** 四层，数据单向流转，各层职责清晰：
+
 ```mermaid
 flowchart TB
-    subgraph CH["① 接入通道层 · Access Channels (13)"]
-        CH_WEB["Web 控制台"]
-        CH_WX["微信 WeChat"]
-        CH_COM["企微/公众号"]
-        CH_FS["飞书 Feishu"]
-        CH_DT["钉钉 DingTalk"]
-        CH_QQ["QQ / 企点"]
-        CH_TG["Telegram"]
-        CH_SL["Slack / Discord"]
+    subgraph CH["接入通道层 · 13 种 IM / Web 入口"]
+        CH1["Web 控制台"]
+        CH2["微信 · 企微 · 公众号"]
+        CH3["飞书 · 钉钉"]
+        CH4["QQ · Telegram · Slack · Discord"]
+        CH5["终端"]
     end
 
-    subgraph AG["② server/agent — AI Agent 核心"]
-        ORCH["chat 会话编排<br/>意图→规划→执行→记忆回写"]
-        TOOLS["tools 工具链<br/>bash/browser/edit/MCP"]
-        MEM["memory 记忆"]
-        KNOW["knowledge 知识库 (RAG)"]
-        SK["skills 技能"]
-        EVO["evolution 自我进化"]
-        ORCH --- TOOLS & MEM & KNOW & SK & EVO
+    subgraph AG["AI Agent 核心 · server/agent"]
+        O["会话编排 chat"]
+        T["工具链 tools"]
+        M["记忆 memory"]
+        K["知识库 knowledge (RAG)"]
+        S["技能 skills"]
+        E["自我进化 evolution"]
+        O --- T & M & K & S & E
     end
 
-    subgraph CP["③ 模型路由 & 能力层 · Models & Capabilities (16)"]
-        MODELS["多模型路由<br/>Claude/GPT/Gemini/DeepSeek/Qwen/Kimi/豆包/GLM/MiniMax..."]
-        VOICE["语音 TTS (15) + 翻译"]
-        MCP["MCP 多服务器集成"]
+    subgraph CB["模型路由 & 能力层"]
+        MD["多模型路由<br/>(16 家 LLM)"]
+        VC["语音 TTS (15) + 翻译"]
+        MC["MCP 多服务器集成"]
     end
 
-    subgraph CLI["④ 桌面客户端 · Desktop Client"]
-        ELECTRON["Electron (macOS)<br/>x64 + arm64 · 托盘"]
-        PYBACK["内置 Python 后端<br/>端口 9899"]
-        DOCKER["Docker 服务器部署"]
+    subgraph CL["桌面客户端 · desktop"]
+        EL["Electron (macOS)<br/>x64 + arm64"]
+        PB["内置 Python 后端<br/>端口 9899"]
     end
 
-    CH --> ORCH
-    AG --> CP
-    CP --> CLI
+    CH1 & CH2 & CH3 & CH4 & CH5 --> O
+    AG --> MD
+    MD --> VC & MC
+    CB --> CL
+    CL --> DK["Docker 服务器部署"]
 
-    classDef acc fill:#e8f0fe,stroke:#4285f4;
-    classDef core fill:#e6f4ea,stroke:#34a853;
-    classDef ext fill:#fef7e0,stroke:#f9ab00;
-    class CH acc; class AG core; class CP,CLI ext;
+    classDef ch fill:#e8f0fe,stroke:#4285f4,color:#1a3a8a;
+    classDef ag fill:#e6f4ea,stroke:#34a853,color:#14532d;
+    classDef cb fill:#fef7e0,stroke:#f9ab00,color:#7a5c00;
+    classDef cl fill:#f3e8ff,stroke:#9c6bde,color:#5b21b6;
+    class CH1,CH2,CH3,CH4,CH5 ch;
+    class O,T,M,K,S,E ag;
+    class MD,VC,MC cb;
+    class EL,PB cl;
 ```
 
-**整体架构图 · System Architecture**：
-
-<p align="center">
-  <img src="docs/architecture.png" alt="Velthyn 整体架构图" width="100%"/>
-</p>
+> 完整架构图参见 [docs/architecture.png](docs/architecture.png)。
 
 **架构设计原则**：
 - **多通道统一会话**：13 种 IM/Web 入口共享同一 Agent 大脑与记忆；
