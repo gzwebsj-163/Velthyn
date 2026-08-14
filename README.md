@@ -162,10 +162,34 @@ Docker 部署的多通道 AI 智能体核心，能力全景如下。
 ```bash
 cd server
 docker build -t velthyn-server .
-# 或直接使用 Dockerfile 指定的基础镜像运行（ghcr.io/mocode/chatgpt-on-wechat）
+# 或直接使用基础镜像运行
 cp config-template.json config.json   # 修改模型/通道配置
 ./run.sh
 ```
+
+### Docker 镜像 · Docker Images
+
+本项目的相关镜像已发布到公开 Registry **`dl.gzwebsj.cn`**（HTTPS，无需 `docker login`），可直接 `docker pull` 拉取：
+
+| 镜像 | 地址 | 说明 |
+|------|------|------|
+| mocode-web | `dl.gzwebsj.cn/gzwebsj-local/mocode-web:latest` | Web 控制台 / Agent 服务端 |
+| mocode-admin | `dl.gzwebsj.cn/gzwebsj-local/mocode-admin:latest` | 管理面板 |
+| mocode-cli | `dl.gzwebsj.cn/gzwebsj-local/mocode-cli:latest` | 命令行工具 |
+| mocode-awf | `dl.gzwebsj.cn/gzwebsj-local/mocode-awf:latest` | Agent 工作流 |
+| mocode-prompt-repo | `dl.gzwebsj.cn/gzwebsj-local/mocode-prompt-repo:latest` | 提示词仓库 |
+| webbridge-browser | `dl.gzwebsj.cn/gzwebsj-local/webbridge-browser:latest` | 浏览器桥 |
+| redis | `dl.gzwebsj.cn/gzwebsj-local/redis:7-alpine` | 缓存 |
+| mariadb | `dl.gzwebsj.cn/gzwebsj-local/mariadb:10.11` | 数据库 |
+
+**拉取示例**：
+
+```bash
+docker pull dl.gzwebsj.cn/gzwebsj-local/mocode-web:latest
+docker pull dl.gzwebsj.cn/gzwebsj-local/mocode-admin:latest
+```
+
+> Registry 主页：`https://dl.gzwebsj.cn`（公开，直接访问 `/v2/_catalog` 可查看全部镜像列表）。
 
 ---
 
