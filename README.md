@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/logo.png" alt="Velthyn Logo" width="160"/>
+  <img src="docs/logo.png" alt="Velthyn Logo" width="128"/>
 </p>
 
 # Velthyn
