@@ -1,0 +1,75 @@
+{
+  "name": "mocode-desktop",
+  "version": "1.0.0",
+  "description": "Mocode Desktop - 聊天与智能体管理桌面应用 (macOS)",
+  "main": "main.js",
+  "author": "MoCode",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "icon": "node scripts/gen_icon.js",
+    "setup": "node scripts/setup_runtime.js",
+    "build:all": "node scripts/build_mac.js",
+    "build:mac": "electron-builder --mac dmg",
+    "build:mac:dir": "electron-builder --mac dir",
+    "dist:mac": "electron-builder --mac",
+    "fetch:python": "node scripts/fetch_macos_python.js"
+  },
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1"
+  },
+  "build": {
+    "appId": "com.mocode.desktop",
+    "productName": "MoCodeDesktop",
+    "asar": true,
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "lib/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "runtime/python-macos",
+        "to": "python",
+        "filter": ["**/*"]
+      },
+      {
+        "from": "runtime/app_data",
+        "to": "app_data",
+        "filter": ["**/*", "!**/*.pyc", "!**/__pycache__/**"]
+      }
+    ],
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["arm64", "x64"]
+        }
+      ],
+      "category": "public.app-category.business",
+      "minimumSystemVersion": "11.0",
+      "identity": null,
+      "icon": "build/icon.png"
+    },
+    "dmg": {
+      "title": "MoCodeDesktop",
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BroadcastChannel 测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .panel {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        button.danger {
+            background: #f44336;
+        }
+        button.danger:hover {
+            background: #da190b;
+        }
+        #log {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 4px;
+            height: 400px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+        }
+        .log-entry {
+            margin-bottom: 5px;
+        }
+        .log-info { color: #4CAF50; }
+        .log-warn { color: #FF9800; }
+        .log-error { color: #f44336; }
+        .log-data { color: #2196F3; }
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <h2>🧪 BroadcastChannel 跨页面通信测试</h2>
+        <p>测试地址：打开此页面和 <a href="http://localhost:9899/chat" target="_blank">http://localhost:9899/chat</a> 在两个标签页中</p>
+
+        <div>
+            <button onclick="startMonitor()">启动监听</button>
+            <button onclick="stopMonitor()" class="danger">停止监听</button>
+            <button onclick="clearLog()">清空日志</button>
+            <button onclick="sendTestMessage()">发送测试消息</button>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h2>📋 实时日志</h2>
+        <div id="log"></div>
+    </div>
+
+    <script>
+        let channel = null;
+        let isActive = false;
+
+        function log(message, type = 'info') {
+            const logDiv = document.getElementById('log');
+            const entry = document.createElement('div');
+            entry.className = `log-entry log-${type}`;
+
+            const timestamp = new Date().toLocaleTimeString();
+            entry.textContent = `[${timestamp}] ${message}`;
+
+            logDiv.appendChild(entry);
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        function clearLog() {
+            document.getElementById('log').innerHTML = '';
+            log('日志已清空', 'info');
+        }
+
+        function initChannel() {
+            if (!channel) {
+                try {
+                    channel = new BroadcastChannel('mocode_dialog_monitor');
+                    log('✅ BroadcastChannel 已创建', 'info');
+
+                    // 监听消息
+                    channel.onmessage = function(event) {
+                        log(`📡 收到消息: ${JSON.stringify(event.data)}`, 'data');
+
+                        if (event.data && event.data.source === 'mocode-dialog-monitor') {
+                            const data = event.data.data;
+
+                            if (data.type === 'system') {
+                                log(`📋 系统消息: ${data.message}`, 'info');
+                            } else {
+                                log(`💬 对话消息: ${data.body?.prompt || '未知'}`, 'info');
+                                log(`📊 分析结果: ${JSON.stringify(data.analysis)}`, 'data');
+                            }
+                        }
+                    };
+
+                    channel.onerror = function(error) {
+                        log(`❌ Channel 错误: ${error}`, 'error');
+                    };
+
+                } catch (e) {
+                    log(`❌ 创建 Channel 失败: ${e.message}`, 'error');
+                }
+            }
+        }
+
+        function startMonitor() {
+            initChannel();
+
+            isActive = true;
+            log('🚀 发送启动命令...', 'info');
+
+            if (channel) {
+                channel.postMessage({
+                    source: 'mocode-control-panel',
+                    action: 'start'
+                });
+
+                log('✅ 启动命令已发送', 'info');
+            }
+        }
+
+        function stopMonitor() {
+            isActive = false;
+            log('🛑 发送停止命令...', 'info');
+
+            if (channel) {
+                channel.postMessage({
+                    source: 'mocode-control-panel',
+                    action: 'stop'
+                });
+
+                log('✅ 停止命令已发送', 'info');
+            }
+        }
+
+        function sendTestMessage() {
+            initChannel();
+
+            if (channel) {
+                const testDialog = {
+                    id: Date.now(),
+                    type: 'chat',
+                    method: 'POST',
+                    url: '/message',
+                    timestamp: new Date().toISOString(),
+                    body: {
+                        prompt: '这是一条测试消息'
+                    },
+                    analysis: {
+                        semantic: '中文 | 测试',
+                        intent: '测试',
+                        keywords: ['测试', '消息']
+                    }
+                };
+
+                channel.postMessage({
+                    source: 'mocode-dialog-monitor',
+                    data: testDialog
+                });
+
+                log('📤 测试消息已发送', 'info');
+            }
+        }
+
+        // 页面加载完成后初始化
+        window.addEventListener('load', function() {
+            log('🌐 页面已加载，准备就绪', 'info');
+            log('📝 点击"启动监听"按钮开始测试', 'info');
+        });
+    </script>
+</body>
+</html>

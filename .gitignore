@@ -1,0 +1,35 @@
+# ===== 敏感信息(绝不上传) =====
+config.json
+config.yaml
+*.secret
+.preview_secret
+.env
+.env.*
+SERVER_CREDENTIALS.md
+*credential*
+
+# ===== 日志 =====
+*.log
+logs/
+nohup.out
+
+# ===== Python =====
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+
+# ===== Node / Electron =====
+node_modules/
+release/
+runtime/
+
+# ===== 系统 =====
+.DS_Store
+.idea/
+.vscode/
+*.swp
