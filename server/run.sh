@@ -449,7 +449,7 @@ clone_project() {
 
     if ! command -v git &> /dev/null; then
         echo -e "${YELLOW}⚠️  Git not available. Trying wget/curl...${NC}"
-        local zip_url="https://gitee.com/zhayujie/Mocode_Chat/repository/archive/master.zip"
+        local zip_url="https://gitee.com/mocode/Mocode_Chat/repository/archive/master.zip"
         if command -v wget &> /dev/null; then
             wget "$zip_url" -O Mocode_Chat.zip
         elif command -v curl &> /dev/null; then
@@ -492,11 +492,11 @@ clone_project() {
         # Test GitHub connectivity before attempting clone
         if curl -sI --connect-timeout 5 --max-time 10 https://github.com > /dev/null 2>&1; then
             echo -e "${YELLOW}🌐 GitHub is reachable, cloning from GitHub...${NC}"
-            _timeout 60 git clone --depth 10 --progress https://github.com/zhayujie/Mocode_Chat.git && clone_ok=true
+            _timeout 60 git clone --depth 10 --progress https://github.com/mocode/Mocode_Chat.git && clone_ok=true
         fi
         if [ "$clone_ok" = false ]; then
             echo -e "${YELLOW}⚠️  GitHub clone failed or timed out, switching to Gitee mirror...${NC}"
-            _timeout 30 git clone --depth 10 --progress https://gitee.com/zhayujie/Mocode_Chat.git && clone_ok=true
+            _timeout 30 git clone --depth 10 --progress https://gitee.com/mocode/Mocode_Chat.git && clone_ok=true
         fi
         if [ "$clone_ok" = false ]; then
             echo -e "${RED}❌ Project clone failed. Please check network connection.${NC}"
@@ -1229,7 +1229,7 @@ cmd_update() {
             pull_ok=true
         else
             echo -e "${YELLOW}⚠️  $(t "git pull 失败，尝试 Gitee 镜像" "git pull failed, trying Gitee mirror")...${NC}"
-            git remote set-url origin https://gitee.com/zhayujie/Mocode_Chat.git
+            git remote set-url origin https://gitee.com/mocode/Mocode_Chat.git
             if git pull; then
                 pull_ok=true
             else

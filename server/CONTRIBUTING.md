@@ -14,7 +14,7 @@ pull requests, code comments, and commit messages in English.**
 
 ## Reporting issues
 
-Found a bug or have an idea? [Open an issue](https://github.com/zhayujie/Mocode_Chat/issues/new/choose).
+Found a bug or have an idea? [Open an issue](https://github.com/mocode/Mocode_Chat/issues/new/choose).
 
 Before opening one, please search existing issues (including closed ones) to
 avoid duplicates, and make sure you're on the latest version.
@@ -48,7 +48,7 @@ See the [Install from Source](https://docs.Mocode_Chat.ai/guide/manual-install)
 guide. In short:
 
 ```bash
-git clone https://github.com/zhayujie/Mocode_Chat.git
+git clone https://github.com/mocode/Mocode_Chat.git
 cd Mocode_Chat
 pip install -r requirements.txt
 pip install -e .
